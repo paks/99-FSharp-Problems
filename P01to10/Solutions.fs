@@ -277,7 +277,7 @@ let pack xs =
 /// * (encode '(a a a a b c c a a d e e e e))
 /// ((4 A) (1 B) (2 C) (2 A) (1 D)(4 E))
 ///  
-/// Example in Haskell: 
+/// Example in F#: 
 /// 
 /// encode <| List.ofSeq "aaaabccaadeeee"
 /// val it : (int * char) list =

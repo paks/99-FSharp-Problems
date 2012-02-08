@@ -1,5 +1,29 @@
-﻿// This project type requires the F# PowerPack at http://fsharppowerpack.codeplex.com/releases
-// Learn more about F# at http://fsharp.net
+﻿// [snippet: (**) Problem 96 : Syntax checker]
+/// In a certain programming language (Ada) identifiers are defined by the syntax diagram below.
+///  
+///   ---->|letter|---+-------------------------------------+------>
+///                   |                                     |
+///                   +--------------+------>|letter|---+---+
+///                   |             / \                 |
+///                   +--->| - |---+   +---->|digit |---+
+///                   |                                 |
+///                   +---------------------------------+
+///
+/// Transform the syntax diagram into a system of syntax diagrams which do not contain loops; i.e. 
+/// which are purely recursive. Using these modified diagrams, write a predicate identifier/1 that can 
+/// check whether or not a given string is a legal identifier.
+///  
+/// Example in Prolog: 
+/// % identifier(Str) :- Str is a legal identifier 
+///  
+/// Example in F#: 
+/// 
+/// > identifier "this-is-a-long-identifier";;
+/// val it : bool = true
+/// > identifier "this-ends-in-";;
+/// val it : bool = false
+/// > identifier "two--hyphens";;
+/// val it : bool = false
 
 open System
 open Microsoft.FSharp.Text.Lexing
@@ -12,31 +36,6 @@ let rec evalExpr expr =
     match expr with
     | Identifier ident          -> ident
 
-printfn "Calculator"
-
-let rec readAndProcess() =
-    printf ":"
-    match Console.ReadLine() with
-    | "quit" -> ()
-    | expr ->
-        try
-            printfn "Lexing [%s]" expr
-            let lexbuff = LexBuffer<char>.FromString(expr)
-            
-            printfn "Parsing..."
-            let expr = Parser.start Lexer.tokenize lexbuff
-            
-            printfn "Evaluating Equation..."
-            let result = evalExpr expr
-            
-            printfn "Result: %s" (result.ToString())
-            
-        with ex ->
-            printfn "Unhandled Exception: %s" ex.Message
-
-        readAndProcess()
-
-readAndProcess()
 
 let identifier expr =
     try

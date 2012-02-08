@@ -288,7 +288,7 @@ let primeR a b = seq { a .. b } |> Seq.filter isPrime |> List.ofSeq
 /// * (goldbach 28)
 /// (5 23)
 ///  
-/// Example in Haskell: 
+/// Example in F#: 
 /// 
 /// *goldbach 28
 /// val it : int * int = (5, 23)
@@ -327,7 +327,7 @@ let goldbach n =
 /// 1856 = 67 + 1789
 /// 1928 = 61 + 1867
 ///  
-/// Example in Haskell: 
+/// Example in F#: 
 /// 
 /// > goldbachList 9 20;;
 /// val it : (int * int) list =
