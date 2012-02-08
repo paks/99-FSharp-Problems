@@ -228,7 +228,7 @@ let identifier' str =
 ///
 
 (*[omit:(Solution needed)]*)
-// your solution here
+let solution98 = "your solution here!!"
 (*[/omit]*)
 
 // [/snippet]
@@ -277,7 +277,7 @@ let identifier' str =
 /// 6,5),'S')]]
 
 (*[omit:(Solution needed)]*)
-// your solution here
+let solution99 = "your solution here!!"
 (*[/omit]*)
 
 // [/snippet]

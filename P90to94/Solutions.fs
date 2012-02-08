@@ -448,6 +448,6 @@ let solutions = equations >> List.map(fun (exp1, exp2) -> toString exp1 + " = " 
 /// many (non-isomorphic!) 3-regular graphs with 6 nodes are there?
 
 (*[omit:(Solution needed)]*)
-// your solution here
+let solution94 = "your solution here!!"
 (*[/omit]*)
 // [/snippet]

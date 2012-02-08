@@ -155,6 +155,7 @@ let cycle start (g: 'a AdjacencyGraph) =
 /// Example in F#:
 
 (* [omit(Solution needed)]*)
+let solution83 = "your solution here!!"
 // this is not a solution. This is still a work in progress.
 type Color = White = 0 | Gray = 1 | Black = 2
 
@@ -248,7 +249,7 @@ let prim (s : 'a AdjacencyGraph) (weightFunction: ('a Edge -> int)) : 'a Graph =
 /// Example in F#: 
 
 (* [omit(Solution needed)]*)
-// 
+let solution85 = "your solution here!!"
 (*[/omit]*)
 // [/snippet]
 
