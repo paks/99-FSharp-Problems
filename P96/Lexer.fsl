@@ -1,0 +1,23 @@
+﻿{
+module Lexer
+open System
+open Parser
+open Microsoft.FSharp.Text.Lexing
+
+let lexeme lexbuf =
+    LexBuffer<char>.LexemeString lexbuf
+}
+
+// These are some regular expression definitions
+let digit = ['0'-'9']
+let letter = (['a'-'z']|['A'-'Z'])
+let whitespace = [' ' '\t' ]
+let newline = ('\n' | '\r' '\n')
+
+rule tokenize = parse
+| whitespace	{ tokenize lexbuf }
+| newline       { tokenize lexbuf }
+| letter(['-']?(letter|digit))*                 { IDENTIFIER (lexeme lexbuf) }
+// EOF
+| eof   { EOF }
+
