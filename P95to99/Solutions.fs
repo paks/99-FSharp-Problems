@@ -179,7 +179,7 @@ let identifier' str =
 /// exactly once in each row, in each column, and in each square.
 
 (*[omit:(Solution)]*)
-/// Solution: https://github.com/paks/ProjectEuler/blob/master/Euler2/P96/sudoku.fs
+let solution97 = "https://github.com/paks/ProjectEuler/blob/master/Euler2/P96/sudoku.fs"
 (*[/omit]*)
 // [/snippet]
 
