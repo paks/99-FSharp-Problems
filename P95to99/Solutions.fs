@@ -76,7 +76,7 @@ let identifier expr = System.Text.RegularExpressions.Regex.IsMatch(expr,@"^([a-z
 
 (*[omit:(Solution 2)]*)
 // This is the overkill solution using a parser combinator.
-// For a solution using fslex and fsyacc go here: 
+// For a solution using fslex and fsyacc go here: https://github.com/paks/99-FSharp-Problems/tree/master/P96
 // The combinator came from here: http://v2matveev.blogspot.com/2010/05/f-parsing-simple-language.html
 type 'a ParserResult = Success of 'a * char list | Failed
 
