@@ -22,7 +22,8 @@
 ///
 ///  
 /// 
-/// A binary tree is either empty or it is composed of a root element and two successors, which are binary trees themselves.
+/// A binary tree is either empty or it is composed of a root element and two successors, 
+/// which are binary trees themselves.
 /// 
 ///                              (a)
 ///                             /   \
@@ -36,7 +37,8 @@
 type 'a Tree = Empty | Branch of 'a * 'a Tree * 'a Tree
 
 ///
-/// This says that a Tree of type a consists of either an Empty node, or a Branch containing one value of type a with exactly two subtrees of type a.
+/// This says that a Tree of type a consists of either an Empty node, or a Branch containing one 
+/// value of type a with exactly two subtrees of type a.
 ///  
 /// Given this definition, the tree in the diagram above would be represented as: 
 /// 
@@ -47,7 +49,8 @@ let tree1 = Branch ('a', Branch ('b', Branch ('d', Empty, Empty),
                                Branch ('f', Branch ('g', Empty, Empty),
                                            Empty))) 
 
-/// Since a "leaf" node is a branch with two empty subtrees, it can be useful to define a shorthand function:
+/// Since a "leaf" node is a branch with two empty subtrees, it can be useful to define a 
+/// shorthand function:
 
 let leaf x = Branch (x, Empty, Empty) 
 
@@ -258,12 +261,13 @@ let construct xs = xs |> List.fold(fun tree x -> insert x tree) Empty
 // [/snippet]
 
 // [snippet: (**) Problem 58 : Generate-and-test paradigm]
-/// Apply the generate-and-test paradigm to construct all symmetric, completely balanced binary trees with 
-/// a given number of nodes.
+/// Apply the generate-and-test paradigm to construct all symmetric, completely balanced 
+/// binary trees with a given number of nodes.
 ///  
 /// Example: 
 /// * sym-cbal-trees(5,Ts).
-/// Ts = [t(x, t(x, nil, t(x, nil, nil)), t(x, t(x, nil, nil), nil)), t(x, t(x, t(x, nil, nil), nil), t(x, nil, t(x, nil, nil)))] 
+/// Ts = [t(x, t(x, nil, t(x, nil, nil)), t(x, t(x, nil, nil), nil)), 
+///       t(x, t(x, t(x, nil, nil), nil), t(x, nil, t(x, nil, nil)))] 
 ///  
 /// Example in F#: 
 /// 

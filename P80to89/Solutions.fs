@@ -95,7 +95,7 @@ let adjacencyGraph2Graph (ns : 'a AdjacencyGraph) : 'a Graph=
 /// > paths 2 6 [(1,[2;3]);(2,[3]);(3,[4]);(4,[2]);(5,[6]);(6,[5])];;
 /// val it : int list list = []
 
-(* [omit(Solution)]*)
+(*[omit(Solution)]*)
 
 let paths start finish (g : 'a AdjacencyGraph) = 
     let map = g |> Map.ofList
@@ -128,7 +128,7 @@ let paths start finish (g : 'a AdjacencyGraph) =
 /// > cycle 1 [(1,[2;3]);(2,[3]);(3,[4]);(4,[2]);(5,[6]);(6,[5])];;
 /// val it : int list list = []
 
-(* [omit(Solution)]*)
+(*[omit(Solution)]*)
 let cycle start (g: 'a AdjacencyGraph) = 
     let map = g |> Map.ofList
     let rec loop route visited = [
@@ -154,7 +154,7 @@ let cycle start (g: 'a AdjacencyGraph) =
 /// <example in lisp>
 /// Example in F#:
 
-(* [omit(Solution needed)]*)
+(*[omit(Solution needed)]*)
 let solution83 = "your solution here!!"
 // this is not a solution. This is still a work in progress.
 type Color = White = 0 | Gray = 1 | Black = 2
@@ -214,7 +214,7 @@ let s_tree (g : 'a AdjacencyGraph) =
 ///    [('a', 'd'); ('d', 'f'); ('a', 'b'); ('b', 'e'); ('e', 'c'); ('e', 'g')])
 /// 
 
-(* [omit(Solution)]*)
+(*[omit(Solution)]*)
 let prim (s : 'a AdjacencyGraph) (weightFunction: ('a Edge -> int)) : 'a Graph = 
     let map = s |> List.map (fun (n,ln) -> n, ln |> List.map(fun m -> ((n,m),weightFunction (n,m)))) |> Map.ofList
     let nodes = s |> List.map fst
@@ -224,7 +224,10 @@ let prim (s : 'a AdjacencyGraph) (weightFunction: ('a Edge -> int)) : 'a Graph =
         if nodes |> Set.isEmpty then
             (List.rev ns, List.rev es)
         else
-                let (a,b) as edge = ns |> List.collect(fun n -> map.[n] |> List.filter(fun ((n,m),w) -> Set.contains m visited |> not) ) |> List.minBy snd |> fst
+                let (a,b) as edge = ns 
+                                    |> List.collect(fun n -> map.[n] 
+                                                             |> List.filter(fun ((n,m),w) -> Set.contains m visited |> not) ) 
+                                    |> List.minBy snd |> fst
                 let nodes' = nodes |> Set.remove b
                 dfs nodes' (b::ns,edge::es) b (Set.add b visited)
     match nodes with
@@ -248,7 +251,7 @@ let prim (s : 'a AdjacencyGraph) (weightFunction: ('a Edge -> int)) : 'a Graph =
 /// 
 /// Example in F#: 
 
-(* [omit(Solution needed)]*)
+(*[omit(Solution needed)]*)
 let solution85 = "your solution here!!"
 (*[/omit]*)
 // [/snippet]
@@ -280,7 +283,7 @@ let solution85 = "your solution here!!"
 /// val it : (char * int) list =
 ///   [('a', 0); ('b', 1); ('c', 0); ('d', 1); ('e', 0); ('f', 2); ('g', 1)]
 
-(* [omit(Solution)]*)
+(*[omit(Solution)]*)
 
 let degree (g: 'a AdjacencyGraph) node = 
     let es = g |> List.find(fst >> (=) node) |> snd
@@ -332,7 +335,7 @@ let colorGraph g =
 /// > depthFirstOrder gdfo 'a';;
 /// val it : char list = ['a'; 'e'; 'f'; 'b'; 'd'; 'c'; 'g']
 
-(* [omit(Solution)]*)
+(*[omit(Solution)]*)
 
 // The enum Color is defined on problem 83
 // The algorithm comes from the book Introduction to Algorithms by Cormen, Leiserson, Rivest and Stein.
@@ -370,7 +373,7 @@ let depthFirstOrder (g : 'a AdjacencyGraph) start =
 ///    [(3, [1; 2]); (2, [1; 3]); (1, [2; 3])]]
 /// > 
 
-(* [omit(Solution)]*)
+(*[omit(Solution)]*)
 // using problem 87 depthFirstOrder function
 let connectedComponents (g : 'a AdjacencyGraph) =
     let nodes = g |> List.map fst |> Set.ofList
@@ -409,7 +412,7 @@ let connectedComponents (g : 'a AdjacencyGraph) =
 /// > isBipartite gdfo;;
 /// val it : bool = true
 
-(* [omit(Solution)]*)
+(*[omit(Solution)]*)
 open System.Collections.Generic; // this is where Queue<'T> is defined
 
 let isBipartite (g : 'a AdjacencyGraph) = 

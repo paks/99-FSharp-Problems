@@ -21,7 +21,9 @@
 /// letters. There are actually only 88 problems.
 ///
 /// 
-/// A multiway tree is composed of a root element and a (possibly empty) set of successors which are multiway trees themselves. A multiway tree is never empty. The set of successor trees is sometimes called a forest.
+/// A multiway tree is composed of a root element and a (possibly empty) set of successors which are 
+/// multiway trees themselves. A multiway tree is never empty. The set of successor trees is sometimes 
+/// called a forest.
 ///  
 ///                              (a)
 ///                            /  |  \
@@ -63,7 +65,8 @@ let tree5 = Node ('a', [
 /// 
 /// 
 /// (*) Problem 70B : Check whether a given term represents a multiway tree
-/// As in problem 54A, all members of this type are multiway trees; there is no use for a predicate to test them.
+/// As in problem 54A, all members of this type are multiway trees; there is no use for a predicate to 
+/// test them.
 /// 
 // [/snippet]
 
@@ -149,7 +152,8 @@ let rec ipl tree =
 // [/snippet]
     
 // [snippet: (*) Problem 72 : Construct the bottom-up order sequence of the tree nodes.]
-/// Write a predicate bottom_up(Tree,Seq) which constructs the bottom-up sequence of the nodes of the multiway tree Tree.
+/// Write a predicate bottom_up(Tree,Seq) which constructs the bottom-up sequence of the nodes of the 
+/// multiway tree Tree.
 ///  
 /// Example in F#: 
 /// 
@@ -187,7 +191,8 @@ let bottom_up tree =
 /// element in a list, followed by its children. The "lispy" representation of a multiway tree is a sequence
 /// of atoms and parentheses '(' and ')', which we shall collectively call "tokens". We can represent this
 /// sequence of tokens as a Prolog list; e.g. the lispy expression (a (b c)) could be represented as the 
-/// Prolog list ['(', a, '(', b, c, ')', ')']. Write a predicate tree_ltl(T,LTL) which constructs the "lispy token list"
+/// Prolog list ['(', a, '(', b, c, ')', ')']. Write a predicate tree_ltl(T,LTL) which constructs the
+/// "lispy token list"
 /// LTL if the tree is given as term T in the usual Prolog notation.
 ///  
 /// (The Prolog example given is incorrect.) 

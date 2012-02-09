@@ -61,7 +61,8 @@ let counLeaves tree = tree |> foldTree (fun _ lc rc -> if lc + rc = 0  then 1 el
 // [/snippet]
 
 // [snippet: (*) Problem 62 : Collect the internal nodes of a binary tree in a list]
-/// An internal node of a binary tree has either one or two non-empty successors. Write a predicate internals/2 to collect them in a list.
+/// An internal node of a binary tree has either one or two non-empty successors. Write a predicate 
+/// internals/2 to collect them in a list.
 ///  
 /// Example: 
 /// % internals(T,S) :- S is the list of internal nodes of the binary tree T.
@@ -179,8 +180,8 @@ let isCompleteBinaryTree tree =
 /// • x(v) is equal to the position of the node v in the inorder sequence 
 /// • y(v) is equal to the depth of the node v in the tree 
 /// 
-/// Write a function to annotate each node of the tree with a position, where (1,1) in the top left corner or the 
-/// rectangle bounding the drawn tree.
+/// Write a function to annotate each node of the tree with a position, where (1,1) in the top left corner
+/// or the rectangle bounding the drawn tree.
 ///  
 /// Here is the example tree from the above illustration: 
 /// 
