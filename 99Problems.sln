@@ -26,10 +26,6 @@ EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "P96", "P96\P96.fsproj", "{74FFDEAC-77B8-46FB-B8E6-D8F2D9187E7E}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
