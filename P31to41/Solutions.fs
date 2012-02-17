@@ -189,7 +189,6 @@ let primeFactors n =
         if x = 1 then
             None
         else
-            let sq = sqrtn x
             match get x with
                 | None -> Some(x, 1) // x it's prime
                 | Some(divisor) -> Some(divisor, x/divisor))
@@ -223,7 +222,6 @@ let primeFactorsMult n =
         if x = 1 then
             None
         else
-            let sq = sqrtn x
             match get x with
                 | None -> Some(x, 1) // x it's prime
                 | Some(divisor) -> Some(divisor, x/divisor))
