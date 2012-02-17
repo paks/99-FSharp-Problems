@@ -261,7 +261,8 @@ let phi = primeFactorsMult >> Seq.fold(fun acc (p,m) -> (p - 1) * pown p (m - 1)
 // [/snippet]
 
 // [snippet: (*) Problem 39 : A list of prime numbers.]
-/// Given a range of integers by its lower and upper limit, construct a list of all prime numbers in that range.
+/// Given a range of integers by its lower and upper limit, construct a list of all prime numbers
+/// in that range.
 ///  
 /// Example in F#: 
 /// 

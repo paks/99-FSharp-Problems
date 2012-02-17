@@ -34,26 +34,30 @@ type 'a Node = 'a * 'a list
 
 type 'a AdjacencyGraph = 'a Node list
 
-let ga = [('b',['c'; 'f']); ('c',['b'; 'f']); ('d',[]); ('f',['b'; 'c'; 'k']); ('g',['h']); ('h',['g']); ('k',['f'])]
+let ga = [('b',['c'; 'f']); ('c',['b'; 'f']); ('d',[]); ('f',['b'; 'c'; 'k']); 
+                                                    ('g',['h']); ('h',['g']); ('k',['f'])]
 
 // [/snippet]
 
 // [snippet: (***) Problem 80 : Conversions]
-/// Write predicates to convert between the different graph representations. With these predicates, 
-/// all representations are equivalent; i.e. for the following problems you can always pick freely the most 
-/// convenient form. The reason this problem is rated (***) is not because it's particularly difficult, but because 
-/// it's a lot of work to deal with all the special cases. 
+/// Write predicates to convert between the different graph representations. With these 
+/// predicates, all representations are equivalent; i.e. for the following problems you 
+/// can always pick freely the most convenient form. The reason this problem is rated 
+/// (***) is not because it's particularly difficult, but because it's a lot of work to 
+/// deal with all the special cases. 
 /// 
 /// Example in F#:
 /// 
-/// > let g = (['b';'c';'d';'f';'g';'h';'k'],[('b','c');('b','f');('c','f');('f','k');('g','h')]);;
+/// > let g = (['b';'c';'d';'f';'g';'h';'k'],[('b','c');('b','f');
+///                                                 ('c','f');('f','k');('g','h')]);;
 /// 
 /// > graph2AdjacencyGraph g;;
 /// val it : char AdjacencyGraph =
 ///   [('b', ['f'; 'c']); ('c', ['f'; 'b']); ('d', []); ('f', ['k'; 'c'; 'b']);
 ///    ('g', ['h']); ('h', ['g']); ('k', ['f'])]
 ///
-/// > let ga = [('b',['c'; 'f']); ('c',['b'; 'f']); ('d',[]); ('f',['b'; 'c'; 'k']); ('g',['h']); ('h',['g']); ('k',['f'])];;
+/// > let ga = [('b',['c'; 'f']); ('c',['b'; 'f']); ('d',[]); ('f',['b'; 'c'; 'k']); 
+///                                             ('g',['h']); ('h',['g']); ('k',['f'])];;
 /// 
 /// > adjacencyGraph2Graph ga;;
 /// val it : char Graph =
@@ -67,6 +71,7 @@ let graph2AdjacencyGraph ((ns, es) : 'a Graph) : 'a AdjacencyGraph =
     (nodeMap,es) 
     ||> List.fold(fun map (a,b) -> map |> Map.add a (b::map.[a]) |> Map.add b (a::map.[b]))
     |> Map.toList
+    |> List.map(fun (a,b) -> a, b |> List.sort)
     
 let adjacencyGraph2Graph (ns : 'a AdjacencyGraph) : 'a Graph= 
     let sort ((a,b) as e) = if a > b then (b, a) else e
@@ -95,7 +100,7 @@ let adjacencyGraph2Graph (ns : 'a AdjacencyGraph) : 'a Graph=
 /// > paths 2 6 [(1,[2;3]);(2,[3]);(3,[4]);(4,[2]);(5,[6]);(6,[5])];;
 /// val it : int list list = []
 
-(*[omit(Solution)]*)
+(*[omit:(Solution)]*)
 
 let paths start finish (g : 'a AdjacencyGraph) = 
     let map = g |> Map.ofList
@@ -114,8 +119,8 @@ let paths start finish (g : 'a AdjacencyGraph) =
 
 
 // [snippet: (*) Problem 82: Cycle from a given node]
-/// Write a predicate cycle(G,A,P) to find a closed path (cycle) P starting at a given node A in the graph G. The 
-/// predicate should return all cycles via backtracking.
+/// Write a predicate cycle(G,A,P) to find a closed path (cycle) P starting at a given node
+///  A in the graph G. The predicate should return all cycles via backtracking.
 /// 
 /// Example:
 /// 
@@ -128,7 +133,7 @@ let paths start finish (g : 'a AdjacencyGraph) =
 /// > cycle 1 [(1,[2;3]);(2,[3]);(3,[4]);(4,[2]);(5,[6]);(6,[5])];;
 /// val it : int list list = []
 
-(*[omit(Solution)]*)
+(*[omit:(Solution)]*)
 let cycle start (g: 'a AdjacencyGraph) = 
     let map = g |> Map.ofList
     let rec loop route visited = [
@@ -144,62 +149,62 @@ let cycle start (g: 'a AdjacencyGraph) =
 // [/snippet]
 
 // [snippet: (**) Problem 83: Construct all spanning trees]
-/// Write a predicate s_tree(Graph,Tree) to construct (by backtracking) all spanning trees of a given graph. With 
-/// this predicate, find out how many spanning trees there are for the graph depicted to the left. The data of this 
-/// example graph can be found in the file p83.dat. When you have a correct solution for the s_tree/2 predicate, use 
-/// it to define two other useful predicates: is_tree(Graph) and is_connected(Graph). Both are five-minutes tasks!
+/// Write a predicate s_tree(Graph,Tree) to construct (by backtracking) all spanning trees 
+/// of a given graph. With this predicate, find out how many spanning trees there are for 
+/// the graph depicted to the left. The data of this example graph can be found in the file
+/// p83.dat. When you have a correct solution for the s_tree/2 predicate, use it to define 
+/// two other useful predicates: is_tree(Graph) and is_connected(Graph). Both are 
+/// five-minutes tasks!
 /// 
 /// Example:
 /// 
 /// <example in lisp>
 /// Example in F#:
 
-(*[omit(Solution needed)]*)
+(*[omit:(Solution needed)]*)
 let solution83 = "your solution here!!"
 // this is not a solution. This is still a work in progress.
 type Color = White = 0 | Gray = 1 | Black = 2
 
 let s_tree (g : 'a AdjacencyGraph) = 
-    // The algorithm comes from the book Introduction to Algorithms by Cormen, Leiserson, Rivest and Stein.
-    let depthFirstSearch (g : 'a AdjacencyGraph) start : 'a AdjacencyGraph = 
-        let nodes = g |> Map.ofList
-        let color = g |> List.map(fun (v,_) -> v, Color.White) |> Map.ofList |> ref
-        let pi = g |> List.map(fun (v,_) -> v, []) |> Map.ofList |> ref
+    let gMap = g |> Map.ofList
+    let vertices = g |> List.map fst 
+    let rec loop ((vertices,edges) as g) u visited = [
+        match gMap.[u] |> List.filter(fun v -> Set.contains v visited |> not) with
+            | [] -> yield g
+            | nodes ->
+                for v in nodes do
+                    for (vs,es) in loop (vertices, edges) v (Set.add v visited) do
+                        yield (v::vs,(u,v)::es)
+    ]
+    vertices |> List.collect(fun u -> loop ([u],[]) u (Set.singleton u)) 
 
-        let rec dfs u = 
-            color := Map.add u Color.Gray !color
-            for v in nodes.[u] do
-                if (!color).[v] = Color.White then
-                    let ns = (!pi).[u]
-                    pi := Map.add u (v::ns) !pi
-                    dfs v
-            color := Map.add u Color.Black !color
+let gs = [(1,[2;3;4]);(2,[1;3]);(3,[1;2;4]);(4,[1;3])]
 
-        dfs start
-        !pi |> Map.toList
-            
-    g |> List.map fst |> List.map(depthFirstSearch g)
+s_tree gs |> printfn "%A"
 (*[/omit]*)
 // [/snippet]
 
 // [snippet: (**) Problem 84: Construct the minimal spanning tree]
-/// Write a predicate ms_tree(Graph,Tree,Sum) to construct the minimal spanning tree of a given labelled
-/// graph. Hint: Use the algorithm of Prim. A small modification of the solution of P83 does the trick. The data of 
-/// the example graph to the right can be found in the file p84.dat.
+/// Write a predicate ms_tree(Graph,Tree,Sum) to construct the minimal spanning tree of a given
+/// labelled graph. Hint: Use the algorithm of Prim. A small modification of the solution of 
+/// P83 does the trick. The data of the example graph to the right can be found in the file p84.dat.
 /// 
 /// Example:
 /// 
 /// <example in lisp>
 /// 
 /// Example in F#: 
-/// > let graphW = [('a',['b'; 'd';]); ('b',['a';'c';'d';'e';]); ('c',['b';'e';]); ('d',['a';'b';'e';'f';]); 
-///               ('e',['b';'c';'d';'f';'g';]); ('f',['d';'e';'g';]); ('g',['e';'f';]); ];;
+/// > let graphW = [('a',['b'; 'd';]); ('b',['a';'c';'d';'e';]); ('c',['b';'e';]); 
+///                 ('d',['a';'b';'e';'f';]); ('e',['b';'c';'d';'f';'g';]); ('f',['d';'e';'g';]); 
+///                 ('g',['e';'f';]); ];;
 /// > let gwF = 
-///     let weigthMap = Map [(('a','b'), 7);(('a','d'), 5);(('b','a'), 7);(('b','c'), 8);(('b','d'), 9);
-///                          (('b','e'), 7);(('c','b'), 8);(('c','e'), 5);(('d','a'), 5);(('d','b'), 9);
-///                          (('d','e'), 15);(('d','f'), 6);(('e','b'), 7);(('e','c'), 5);(('e','d'), 15);
-///                          (('e','f'), 8);(('e','g'), 9);(('f','d'), 6);(('f','e'), 8);(('f','g'), 11);
-///                          (('g','e'), 9);(('g','f'), 11);]
+///     let weigthMap = 
+///         Map [(('a','b'), 7);(('a','d'), 5);(('b','a'), 7);(('b','c'), 8);(('b','d'), 9);
+///              (('b','e'), 7);(('c','b'), 8);(('c','e'), 5);(('d','a'), 5);(('d','b'), 9);
+///              (('d','e'), 15);(('d','f'), 6);(('e','b'), 7);(('e','c'), 5);(('e','d'), 15);
+///              (('e','f'), 8);(('e','g'), 9);(('f','d'), 6);(('f','e'), 8);(('f','g'), 11);
+///              (('g','e'), 9);(('g','f'), 11);]
 ///     fun (a,b) -> weigthMap.[(a,b)];;
 /// 
 /// val graphW : (char * char list) list =
@@ -214,7 +219,7 @@ let s_tree (g : 'a AdjacencyGraph) =
 ///    [('a', 'd'); ('d', 'f'); ('a', 'b'); ('b', 'e'); ('e', 'c'); ('e', 'g')])
 /// 
 
-(*[omit(Solution)]*)
+(*[omit:(Solution)]*)
 let prim (s : 'a AdjacencyGraph) (weightFunction: ('a Edge -> int)) : 'a Graph = 
     let map = s |> List.map (fun (n,ln) -> n, ln |> List.map(fun m -> ((n,m),weightFunction (n,m)))) |> Map.ofList
     let nodes = s |> List.map fst
@@ -239,11 +244,11 @@ let prim (s : 'a AdjacencyGraph) (weightFunction: ('a Edge -> int)) : 'a Graph =
 
 
 // [snippet: (**) Problem 85: Graph isomorphism]
-/// Two graphs G1(N1,E1) and G2(N2,E2) are isomorphic if there is a bijection f: N1 -> N2 such that for any 
-/// nodes X,Y of N1, X and Y are adjacent if and only if f(X) and f(Y) are adjacent.
+/// Two graphs G1(N1,E1) and G2(N2,E2) are isomorphic if there is a bijection f: N1 -> N2 such
+/// that for any nodes X,Y of N1, X and Y are adjacent if and only if f(X) and f(Y) are adjacent.
 /// 
-/// Write a predicate that determines whether two graphs are isomorphic. Hint: Use an open-ended list to 
-/// represent the function f.
+/// Write a predicate that determines whether two graphs are isomorphic. Hint: Use an open-ended
+/// list to represent the function f.
 /// 
 /// Example:
 /// 
@@ -251,7 +256,7 @@ let prim (s : 'a AdjacencyGraph) (weightFunction: ('a Edge -> int)) : 'a Graph =
 /// 
 /// Example in F#: 
 
-(*[omit(Solution needed)]*)
+(*[omit:(Solution needed)]*)
 let solution85 = "your solution here!!"
 (*[/omit]*)
 // [/snippet]
@@ -259,10 +264,11 @@ let solution85 = "your solution here!!"
 // [snippet: (**) Problem 86: Node degree and graph coloration]
 /// a) Write a predicate degree(Graph,Node,Deg) that determines the degree of a given node.
 /// 
-/// b) Write a predicate that generates a list of all nodes of a graph sorted according to decreasing degree.
+/// b) Write a predicate that generates a list of all nodes of a graph sorted according to 
+///    decreasing degree.
 /// 
-/// c) Use Welch-Powell's algorithm to paint the nodes of a graph in such a way that adjacent nodes have 
-/// different colors.
+/// c) Use Welch-Powell's algorithm to paint the nodes of a graph in such a way that adjacent 
+///    nodes have different colors.
 /// 
 /// 
 /// Example:
@@ -283,7 +289,7 @@ let solution85 = "your solution here!!"
 /// val it : (char * int) list =
 ///   [('a', 0); ('b', 1); ('c', 0); ('d', 1); ('e', 0); ('f', 2); ('g', 1)]
 
-(*[omit(Solution)]*)
+(*[omit:(Solution)]*)
 
 let degree (g: 'a AdjacencyGraph) node = 
     let es = g |> List.find(fst >> (=) node) |> snd
@@ -316,9 +322,9 @@ let colorGraph g =
 // [/snippet]
 
 // [snippet: (**) Problem 87: Depth-first order graph traversal (alternative solution)]
-/// Write a predicate that generates a depth-first order graph traversal sequence. The starting point should be 
-/// specified, and the output should be a list of nodes that are reachable from this starting point (in depth-first
-/// order).
+/// Write a predicate that generates a depth-first order graph traversal sequence. The starting 
+/// point should be specified, and the output should be a list of nodes that are reachable from 
+/// this starting point (in depth-first order).
 /// 
 /// Example:
 /// 
@@ -326,7 +332,9 @@ let colorGraph g =
 /// 
 /// Example in F#: 
 ///
-/// > let gdfo = (['a';'b';'c';'d';'e';'f';'g';], [('a','b');('a','c');('a','e');('b','d');('b','f');('c','g');('e','f');]) |> Graph2AdjacencyGraph;;
+/// > let gdfo = (['a';'b';'c';'d';'e';'f';'g';], 
+///               [('a','b');('a','c');('a','e');('b','d');('b','f');('c','g');('e','f');]) 
+///               |> Graph2AdjacencyGraph;;
 /// 
 /// val gdfo : char AdjacencyGraph =
 ///   [('a', ['e'; 'c'; 'b']); ('b', ['f'; 'd'; 'a']); ('c', ['g'; 'a']);
@@ -335,7 +343,7 @@ let colorGraph g =
 /// > depthFirstOrder gdfo 'a';;
 /// val it : char list = ['a'; 'e'; 'f'; 'b'; 'd'; 'c'; 'g']
 
-(*[omit(Solution)]*)
+(*[omit:(Solution)]*)
 
 // The enum Color is defined on problem 83
 // The algorithm comes from the book Introduction to Algorithms by Cormen, Leiserson, Rivest and Stein.
@@ -373,7 +381,7 @@ let depthFirstOrder (g : 'a AdjacencyGraph) start =
 ///    [(3, [1; 2]); (2, [1; 3]); (1, [2; 3])]]
 /// > 
 
-(*[omit(Solution)]*)
+(*[omit:(Solution)]*)
 // using problem 87 depthFirstOrder function
 let connectedComponents (g : 'a AdjacencyGraph) =
     let nodes = g |> List.map fst |> Set.ofList
@@ -412,7 +420,7 @@ let connectedComponents (g : 'a AdjacencyGraph) =
 /// > isBipartite gdfo;;
 /// val it : bool = true
 
-(*[omit(Solution)]*)
+(*[omit:(Solution)]*)
 open System.Collections.Generic; // this is where Queue<'T> is defined
 
 let isBipartite (g : 'a AdjacencyGraph) = 

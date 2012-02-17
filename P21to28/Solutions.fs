@@ -242,8 +242,8 @@ let rec group ns xs =
     
 // [snippet: (**) Problem 28 : Sorting a list of lists according to length of sublists]
 /// a) We suppose that a list contains elements that are lists themselves. The objective 
-/// is to sort the elements of this list according to their length. E.g. short lists first, longer 
-/// lists later, or vice versa.
+/// is to sort the elements of this list according to their length. E.g. short lists first,
+/// longer lists later, or vice versa.
 ///  
 /// Example: 
 /// * (lsort '((a b c) (d e) (f g h) (d e) (i j k l) (m n) (o)))

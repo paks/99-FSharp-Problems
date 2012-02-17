@@ -21,9 +21,9 @@
 /// letters. There are actually only 88 problems.
 ///
 /// 
-/// A multiway tree is composed of a root element and a (possibly empty) set of successors which are 
-/// multiway trees themselves. A multiway tree is never empty. The set of successor trees is sometimes 
-/// called a forest.
+/// A multiway tree is composed of a root element and a (possibly empty) set of successors which
+/// are multiway trees themselves. A multiway tree is never empty. The set of successor trees is
+/// sometimes called a forest.
 ///  
 ///                              (a)
 ///                            /  |  \
@@ -65,8 +65,8 @@ let tree5 = Node ('a', [
 /// 
 /// 
 /// (*) Problem 70B : Check whether a given term represents a multiway tree
-/// As in problem 54A, all members of this type are multiway trees; there is no use for a predicate to 
-/// test them.
+/// As in problem 54A, all members of this type are multiway trees; there is no use for a 
+/// predicate to test them.
 /// 
 // [/snippet]
 
@@ -132,8 +132,9 @@ let tree2String tree =
 // [/snippet]
 
 // [snippet: (*) Problem 71 : Determine the internal path length of a tree.]
-/// We define the internal path length of a multiway tree as the total sum of the path lengths from the 
-/// root to all nodes of the tree. By this definition, tree5 has an internal path length of 9.
+/// We define the internal path length of a multiway tree as the total sum of the path lengths
+/// from the root to all nodes of the tree. By this definition, tree5 has an internal path 
+/// length of 9.
 ///  
 /// Example in F#: 
 /// 
@@ -152,8 +153,8 @@ let rec ipl tree =
 // [/snippet]
     
 // [snippet: (*) Problem 72 : Construct the bottom-up order sequence of the tree nodes.]
-/// Write a predicate bottom_up(Tree,Seq) which constructs the bottom-up sequence of the nodes of the 
-/// multiway tree Tree.
+/// Write a predicate bottom_up(Tree,Seq) which constructs the bottom-up sequence of the nodes
+/// of the multiway tree Tree.
 ///  
 /// Example in F#: 
 /// 
@@ -187,13 +188,13 @@ let bottom_up tree =
 ///
 ///     a        (a b)    (a (b c))   (b d e)    (a (f g) c (b d e))
 ///
-/// Note that in the "lispy" notation a node with successors (children) in the tree is always the first
-/// element in a list, followed by its children. The "lispy" representation of a multiway tree is a sequence
-/// of atoms and parentheses '(' and ')', which we shall collectively call "tokens". We can represent this
-/// sequence of tokens as a Prolog list; e.g. the lispy expression (a (b c)) could be represented as the 
-/// Prolog list ['(', a, '(', b, c, ')', ')']. Write a predicate tree_ltl(T,LTL) which constructs the
-/// "lispy token list"
-/// LTL if the tree is given as term T in the usual Prolog notation.
+/// Note that in the "lispy" notation a node with successors (children) in the tree is always
+/// the first element in a list, followed by its children. The "lispy" representation of a 
+/// multiway tree is a sequence of atoms and parentheses '(' and ')', which we shall 
+/// collectively call "tokens". We can represent this sequence of tokens as a Prolog list; 
+/// e.g. the lispy expression (a (b c)) could be represented as the Prolog list 
+/// ['(', a, '(', b, c, ')', ')']. Write a predicate tree_ltl(T,LTL) which constructs the
+/// "lispy token list" LTL if the tree is given as term T in the usual Prolog notation.
 ///  
 /// (The Prolog example given is incorrect.) 
 /// 
@@ -218,8 +219,8 @@ let bottom_up tree =
 /// > lisp2Tree "(a (f g) c (b d e))" = tree5;;
 /// val it : bool = true
 ///
-/// As a second, even more interesting exercise try to rewrite tree_ltl/2 in a way that the inverse
-/// conversion is also possible.
+/// As a second, even more interesting exercise try to rewrite tree_ltl/2 in a way that the
+/// inverse conversion is also possible.
 
 (*[omit:(Solution)]*)
 let treeltl str = str |> List.ofSeq |> List.filter((<>) ' ')

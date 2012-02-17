@@ -61,8 +61,8 @@ let counLeaves tree = tree |> foldTree (fun _ lc rc -> if lc + rc = 0  then 1 el
 // [/snippet]
 
 // [snippet: (*) Problem 62 : Collect the internal nodes of a binary tree in a list]
-/// An internal node of a binary tree has either one or two non-empty successors. Write a predicate 
-/// internals/2 to collect them in a list.
+/// An internal node of a binary tree has either one or two non-empty successors. Write a 
+/// predicate internals/2 to collect them in a list.
 ///  
 /// Example: 
 /// % internals(T,S) :- S is the list of internal nodes of the binary tree T.
@@ -131,10 +131,12 @@ let atLevel tree level =
 /// Example in F#: 
 /// 
 /// > completeBinaryTree 4
-/// Branch ('x', Branch ('x', Branch ('x', Empty, Empty), Empty), Branch ('x', Empty, Empty))
+/// Branch ('x', Branch ('x', Branch ('x', Empty, Empty), Empty), 
+///                                             Branch ('x', Empty, Empty))
 ///  
-/// > isCompleteBinaryTree <|  Branch ('x', Branch ('x', Empty, Empty), Branch ('x', Empty, Empty))
-/// True
+/// > isCompleteBinaryTree <|  Branch ('x', Branch ('x', Empty, Empty), 
+///                                                    Branch ('x', Empty, Empty))
+/// val it : bool = true
 
 (*[omit:(Solution)]*)
 let completeBinaryTree n = 
@@ -158,9 +160,10 @@ let isCompleteBinaryTree tree =
     
 
 // [snippet: (**) Problem 64 : Layout a binary tree (1)]
-/// Given a binary tree as the usual Prolog term t(X,L,R) (or nil). As a preparation for drawing the tree, a 
-/// layout algorithm is required to determine the position of each node in a rectangular grid. Several layout 
-/// methods are conceivable, one of them is shown in the illustration below:
+/// Given a binary tree as the usual Prolog term t(X,L,R) (or nil). As a preparation for 
+/// drawing the tree, a layout algorithm is required to determine the position of each 
+/// node in a rectangular grid. Several layout methods are conceivable, one of them is 
+/// shown in the illustration below:
 ///
 ///     1  2  3  4  5  6  7  8  9  10  11  12
 /// 
@@ -180,8 +183,8 @@ let isCompleteBinaryTree tree =
 /// • x(v) is equal to the position of the node v in the inorder sequence 
 /// • y(v) is equal to the depth of the node v in the tree 
 /// 
-/// Write a function to annotate each node of the tree with a position, where (1,1) in the top left corner
-/// or the rectangle bounding the drawn tree.
+/// Write a function to annotate each node of the tree with a position, where (1,1) in the 
+/// top left corner or the rectangle bounding the drawn tree.
 ///  
 /// Here is the example tree from the above illustration: 
 /// 
@@ -259,8 +262,8 @@ let layout tree =
 ///               /   \
 /// 5          (d)    (g)
 /// 
-/// Find out the rules and write the corresponding function. Hint: On a given level, the horizontal 
-/// distance between neighboring nodes is constant.
+/// Find out the rules and write the corresponding function. Hint: On a given level, the 
+/// horizontal distance between neighboring nodes is constant.
 ///  
 /// Use the same conventions as in problem P64 and test your function in an appropriate way.
 ///  

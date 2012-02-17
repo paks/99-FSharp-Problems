@@ -84,9 +84,9 @@ let tree4 = Branch (1, Branch (2, Empty, Branch (4, Empty, Empty)),
 /// NIL
 ///  
 /// Non-solution: 
-/// F#'s type system ensures that all terms of type 'a Tree are binary trees: it is just not possible to 
-/// construct an invalid tree with this type. Hence, it is redundant to introduce a predicate to check this 
-/// property: it would always return True
+/// F#'s type system ensures that all terms of type 'a Tree are binary trees: it is just not 
+//  possible to construct an invalid tree with this type. Hence, it is redundant to introduce 
+/// a predicate to check this property: it would always return True
 // [/snippet]
 
 // [snippet: (**) Problem 55 : Construct completely balanced binary trees]
@@ -286,9 +286,9 @@ let symCbalTrees = cbalTree >> List.filter symmetric
 // [/snippet]
 
 // [snippet: (**) Problem 59 : Construct height-balanced binary trees]
-/// In a height-balanced binary tree, the following property holds for every node: The height of its left 
-/// subtree and the height of its right subtree are almost equal, which means their difference is not greater 
-/// than one.
+/// In a height-balanced binary tree, the following property holds for every node: The 
+/// height of its left subtree and the height of its right subtree are almost equal, 
+/// which means their difference is not greater than one.
 ///  
 /// Example: 
 /// ?- hbal_tree(3,T).
@@ -333,16 +333,16 @@ let hbalTree a height =
 // [/snippet]
 
 // [snippet: (**) Problem 60 : Construct height-balanced binary trees with a given number of nodes]
-/// Consider a height-balanced binary tree of height H. What is the maximum number of nodes it can 
-/// contain?
-/// Clearly, MaxN = 2**H - 1. However, what is the minimum number MinN? This question is more difficult. 
-/// Try to find a recursive statement and turn it into a function minNodes that returns the minimum number 
-/// of nodes in a height-balanced binary tree of height H. On the other hand, we might ask: what is the 
-/// maximum height H a height-balanced binary tree with N nodes can have? Write a function maxHeight 
-/// that computes this. 
+/// Consider a height-balanced binary tree of height H. What is the maximum number of nodes 
+/// it can contain?
+/// Clearly, MaxN = 2**H - 1. However, what is the minimum number MinN? This question is more 
+/// difficult. Try to find a recursive statement and turn it into a function minNodes that 
+/// returns the minimum number of nodes in a height-balanced binary tree of height H. On the 
+/// other hand, we might ask: what is the maximum height H a height-balanced binary tree with 
+/// N nodes can have? Write a function maxHeight that computes this. 
 ///
-/// Now, we can attack the main problem: construct all the height-balanced binary trees with a given nuber 
-/// of nodes. Find out how many height-balanced trees exist for N = 15.
+/// Now, we can attack the main problem: construct all the height-balanced binary trees with a 
+/// given nuber of nodes. Find out how many height-balanced trees exist for N = 15.
 ///  
 /// Example in Prolog: 
 /// ?- count_hbal_trees(15,C).

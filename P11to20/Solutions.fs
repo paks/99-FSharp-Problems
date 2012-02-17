@@ -58,7 +58,8 @@ let encodeModified xs = xs |> pack |> List.map (Seq.countBy id >> Seq.head >> fu
 
 
 // [snippet: (**) Problem 12 : Decode a run-length encoded list.]
-/// Given a run-length code list generated as specified in problem 11. Construct its uncompressed version.
+/// Given a run-length code list generated as specified in problem 11. Construct its 
+/// uncompressed version.
 ///  
 /// Example in F#: 
 /// 
@@ -78,9 +79,10 @@ let decodeModified xs =
 // [/snippet]
 
 // [snippet: (**) Problem 13 : Run-length encoding of a list (direct solution).]
-/// Implement the so-called run-length encoding data compression method directly. I.e. don't explicitly create 
-/// the sublists containing the duplicates, as in problem 9, but only count them. As in problem P11, simplify 
-/// the result list by replacing the singleton lists (1 X) by X.
+/// Implement the so-called run-length encoding data compression method directly. I.e. 
+/// don't explicitly create the sublists containing the duplicates, as in problem 9, 
+/// but only count them. As in problem P11, simplify the result list by replacing the 
+/// singleton lists (1 X) by X.
 ///  
 /// Example: 
 /// * (encode-direct '(a a a a b c c a a d e e e e))
@@ -309,7 +311,8 @@ let rec rotate' xs n =
 /// * (remove-at '(a b c d) 2)
 /// (A C D)
 ///  
-/// (Note that this only returns the residue list, while the Prolog version also returns the deleted element.)
+/// (Note that this only returns the residue list, while the Prolog version also returns 
+/// the deleted element.)
 ///  
 /// Example in F#: 
 /// 
