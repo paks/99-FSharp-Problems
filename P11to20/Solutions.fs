@@ -43,14 +43,9 @@ type 'a Encoding = Multiple of int * 'a | Single of 'a
 /// From problem 9 
 let pack xs = 
     let collect x = function
-        | [] -> failwith "empty list you fool!"
-        | []::xss -> [x]::xss
-        | (y::xs)::xss as acc -> 
-            if x = y then
-                (x::y::xs)::xss
-            else
-                [x]::acc
-    List.foldBack collect xs [[]]
+        | (y::xs)::xss when x = y -> (x::y::xs)::xss
+        | xss -> [x]::xss
+    List.foldBack collect xs []
 
 let encodeModified xs = xs |> pack |> List.map (Seq.countBy id >> Seq.head >> fun(x,n)-> if n = 1 then Single x else Multiple (n,x))
 (*[/omit]*)

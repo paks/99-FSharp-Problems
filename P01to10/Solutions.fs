@@ -193,7 +193,7 @@ type 'a NestedList = List of 'a NestedList list | Elem of 'a
 /// val it : int list = [5]
 /// > flatten (List [Elem 1; List [Elem 2; List [Elem 3; Elem 4]; Elem 5]]);;
 /// val it : int list = [1;2;3;4;5]
-/// > flatten (List [] : int List);;
+/// > flatten (List [] : int NestedList);;
 /// val it : int list = []
 
 (*[omit:(Solution 1)]*)
@@ -257,14 +257,9 @@ let compress' = function
 (*[omit:(Solution)]*)
 let pack xs = 
     let collect x = function
-        | [] -> failwith "empty list you fool!"
-        | []::xss -> [x]::xss
-        | (y::xs)::xss as acc -> 
-            if x = y then
-                (x::y::xs)::xss
-            else
-                [x]::acc
-    List.foldBack collect xs [[]]
+        | (y::xs)::xss when x = y -> (x::y::xs)::xss
+        | xss -> [x]::xss
+    List.foldBack collect xs []
 (*[/omit]*)
 // [/snippet]
 
