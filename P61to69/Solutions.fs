@@ -56,7 +56,7 @@ let foldTree branchF emptyV t =
                                   cont (branchF x lacc racc)))
     loop t id
 
-let counLeaves tree = tree |> foldTree (fun _ lc rc -> if lc + rc = 0  then 1 else 1+ lc + rc) 0
+let countLeaves tree = tree |> foldTree (fun _ lc rc -> 1 + lc + rc) 0
 (*[/omit]*)
 // [/snippet]
 
