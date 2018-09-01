@@ -289,12 +289,8 @@ let encode' xs = xs |> pack |> List.map(fun xs -> List.length xs, List.head xs)
 (*[omit:(Solutions 3)]*)
 let encode'' xs = 
     let collect x = function
-        | [] -> [(1, x)]
-        | (n,y)::xs as acc-> 
-            if x = y then
-                (n+1, y)::xs
-            else
-                (1,x)::acc
+        | (n,y)::xs when x = y -> (n+1,y)::xs
+        | acc -> (1,x)::acc
     List.foldBack collect xs []
 (*[/omit]*)
 // [/snippet]
